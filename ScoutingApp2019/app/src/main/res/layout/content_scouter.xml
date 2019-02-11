@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Scouter"
+    tools:showIn="@layout/activity_scouter"
+    android:theme="@android:style/Theme.Black.NoTitleBar"
+    android:background="@color/black">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Team Number"
+                android:textSize="18sp"
+                app:fontFamily="monospace"
+                tools:text="Team Number" />
+
+            <EditText
+                android:id="@+id/editText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:hint="Team Number"
+                android:inputType="number" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textSize="12sp"
+                app:fontFamily="monospace"
+                tools:text="Team" />
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Position"
+                android:textSize="18sp"
+                app:fontFamily="monospace"
+                tools:text="Position" />
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/positions"
+                android:popupTheme="@android:style/ThemeOverlay.Material.Light"/>
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sandstorm"
+                android:textSize="18sp"
+                app:fontFamily="monospace"
+                tools:text="Sandstorm" />
+
+            <CheckBox
+                android:id="@+id/checkBox6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rocket Ship Balls" />
+
+            <CheckBox
+                android:id="@+id/checkBox4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="cargo ship balls" />
+
+            <CheckBox
+                android:id="@+id/checkBox2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="crossed Hab Line" />
+
+            <CheckBox
+                android:id="@+id/checkBox3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cargo Ship Hatches" />
+
+            <CheckBox
+                android:id="@+id/checkBox5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rocket Ship Hatches" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Teleop"
+                android:textSize="24sp"
+                app:fontFamily="monospace"
+                tools:text="Teleop" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="cargo ship balls"
+                android:textSize="18sp"
+                app:fontFamily="monospace" />
+            <NumberPicker
+                android:id="@+id/CargoShipBallCount"
+                style="@style/Widget.AppCompat.SeekBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:max="12" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cargo ship hatch panels"
+                android:textSize="18sp"
+                app:fontFamily="monospace" />
+
+            <NumberPicker
+                android:id="@+id/cargoShipHatchPanelCount"
+                style="@style/Widget.AppCompat.SeekBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:max="12" />
+
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rocket ship balls"
+                android:textSize="18sp"
+                app:fontFamily="monospace" />
+
+            <NumberPicker
+                android:id="@+id/rocketShipBallCount"
+                style="@style/Widget.AppCompat.SeekBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:max="12" />
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rocket ship hatch panels"
+                android:textSize="18sp"
+                app:fontFamily="monospace" />
+
+            <NumberPicker
+                android:id="@+id/rocketShipHatchPanelCount3"
+                style="@style/Widget.AppCompat.SeekBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:max="12" />
+
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Rocket Role"
+                android:textSize="18sp"
+                app:fontFamily="monospace" />
+
+            <Spinner
+                android:id="@+id/RocketRole"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/RocketRoles" />
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Climbing Role"
+                android:textSize="18sp"
+                app:fontFamily="monospace" />
+
+            <Spinner
+                android:id="@+id/ClimbingRoles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/ClimbingRoles" />
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/Role"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Overall Role">
+
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="hint" />
+            </android.support.design.widget.TextInputLayout>
+
+            <android.support.design.widget.TextInputLayout
+                android:id="@+id/Other"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:hint="Anything else to add?">
+
+                <android.support.design.widget.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="hint" />
+            </android.support.design.widget.TextInputLayout>
+
+            <Button
+                android:id="@+id/CreateQR"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/design_default_color_primary_dark"
+                android:text="Create QR" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"
+                tools:srcCompat="@tools:sample/avatars[11]" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

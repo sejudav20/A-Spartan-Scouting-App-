@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="positions" >
+        <item>Center</item>
+        <item>Right</item>
+        <item>Left</item>
+
+    </string-array>
+    <string-array name="RocketRoles" >
+        <item>Upper</item>
+        <item>Middle</item>
+        <item>Lower</item>
+        <item>All</item>
+        <item>None</item>
+        <item>Middle and Upper</item>
+        <item>Middle and Lower</item>
+    </string-array>
+    <string-array name="ClimbingRoles" >
+        <item>Highest</item>
+        <item>Middle</item>
+
+        <item>Both</item>
+        <item>None</item>
+
+    </string-array>
+</resources>
