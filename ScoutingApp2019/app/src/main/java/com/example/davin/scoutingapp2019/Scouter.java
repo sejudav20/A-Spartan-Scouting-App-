@@ -219,9 +219,9 @@ rocketHatchPanelCount.setMaxValue(20);
 
 public static String createString(){
 String sandstorm=sandstormCrossedHabLine.isChecked()+" "+sandstormCargoShipBalls.isChecked()+" "+sandstormCargoShipHatches.isChecked()+" "+sandstormRocketShipBalls.isChecked()+" "+sandstormRocketHatch.isChecked();
-String teleop= cargoShipBallCount.getValue()+"|"+cargoShipHatchPanelCount.getValue()+"|"+rocketBallCount.getValue()+"|"+rocketHatchPanelCount.getValue();
+String teleop= cargoShipBallCount.getValue()+","+cargoShipHatchPanelCount.getValue()+","+rocketBallCount.getValue()+","+rocketHatchPanelCount.getValue();
 
-return teamNumberView.getText()+"|"+ position+"|"+sandstorm+"|"+teleop+"|"+robotRocketRole+"|"+climberRole+"|"+overallRole.getEditText().getText()+"| "+otherComments.getEditText().getText();
+return teamNumberView.getText()+","+ position+","+sandstorm+","+teleop+","+robotRocketRole+","+climberRole+","+overallRole.getEditText().getText()+", "+otherComments.getEditText().getText();
 
 }
 

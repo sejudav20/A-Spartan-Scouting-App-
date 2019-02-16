@@ -3,6 +3,7 @@ package com.example.davin.scoutingapp2019;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,9 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.TeamVi
 
         private TeamViewHolder(View itemView) {
             super(itemView);
+
+        Log.d("View","ViewHolder created");
+
             wordItemView = itemView.findViewById(R.id.textView);
         }
     }
@@ -41,7 +45,9 @@ public class TeamListAdapter extends RecyclerView.Adapter<TeamListAdapter.TeamVi
     public void onBindViewHolder(TeamViewHolder holder, int position) {
         if (mTeams != null) {
             Team current = mTeams.get(position);
-            holder.wordItemView.setText(current.getTeamNumber());
+             Log.d("View","setting text");
+
+            holder.wordItemView.setText(current.getTeamNumber()+"");
         } else {
             // Covers the case of data not being ready yet.
             holder.wordItemView.setText("No Word");

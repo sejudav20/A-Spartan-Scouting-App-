@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -18,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.vision.Frame;
 import com.google.android.gms.vision.barcode.Barcode;
@@ -28,13 +30,11 @@ import static com.example.davin.scoutingapp2019.DataDisplay.NEW_WORD_ACTIVITY_RE
 public class Home extends AppCompatActivity {
 
 
+    ImageView imgView;
+    Team newTeam;
+    TextView qrstring;
+    private TeamViewModel teamViewModel = DataDisplay.teamViewModel;
 
-
-
-
-ImageView imgView;
-
-TextView qrstring;
     @Override
 
 
@@ -44,9 +44,15 @@ TextView qrstring;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        if(getIntent().getIntExtra("pass",0)==9){
+
+            teamViewModel.insert(newTeam);
+
+        }
 
 
-        qrstring=findViewById(R.id.txtcontent);
+Log.d("View","created");
+        qrstring = findViewById(R.id.txtcontent);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         imgView = findViewById(R.id.imageView);
@@ -66,30 +72,44 @@ TextView qrstring;
         scanButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("Me","start process");
+                Log.d("Me", "start process");
                 dispatchTakePictureIntent();
 
             }
         });
+
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, DataDisplay.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     final int REQUEST_IMAGE_CAPTURE = 1;
 
-    private void dispatchTakePictureIntent(){
+    private void dispatchTakePictureIntent() {
+
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        Log.d("Me","Thinking its working");
+        Log.d("Me", "Thinking its working");
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
-            Log.d("Me","Hi ");
+            Log.d("Me", "Hi ");
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+   @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("View", "I entered the wrong onActivityResult");
+
+
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
 
-            Log.d("Me","On Activity result ");
+            Log.d("Me", "On Activity result ");
 
             Bundle extras = data.getExtras();
             Bitmap imageBitmap = (Bitmap) extras.get("data");
@@ -98,7 +118,7 @@ TextView qrstring;
                     new BarcodeDetector.Builder(getApplicationContext())
                             .setBarcodeFormats(Barcode.DATA_MATRIX | Barcode.QR_CODE)
                             .build();
-            if(!detector.isOperational()){
+            if (!detector.isOperational()) {
                 qrstring.setText("Could not set up the detector!");
                 return;
             }
@@ -106,16 +126,54 @@ TextView qrstring;
             SparseArray<Barcode> barcodes = detector.detect(frame);
             Barcode thisCode = barcodes.valueAt(0);
             qrstring.setText(thisCode.rawValue);
+
+
+
+            Log.d("View", "got data: " +thisCode.rawValue );
+            Destring destring = new Destring(thisCode.rawValue);
+            newTeam = new Team(destring.getTeamNumber(), destring.getPosition(), destring.getSandstorm("hab line"), destring.getSandstorm("cargo balls"), destring.getSandstorm("cargo hatches"), destring.getSandstorm("rocket balls"), destring.getSandstorm("rocket hatches"), destring.getTeleop("cargo balls"), destring.getTeleop("cargo hatches"), destring.getTeleop("rocket balls"), destring.getTeleop("rocket hatches"), destring.getRocketRole(), destring.getClimberRole(), destring.getOverallRole(), destring.getOtherComments());
+
+
+
+
+            Log.d("View", "inserted new team: " + newTeam.getTeamNumber());
+
+            Intent in=new Intent(this,DataDisplay.class);
+            in.putExtra("type",7);
+
+
+            Log.d("View","Changed activities");
+            startActivity(in);
+// teamViewModel.insert(newTeam);
+
+
+
+            /*
             Intent intent = new Intent(Home.this, DataDisplay.class);
 
             intent.putExtra("str",thisCode.rawValue);
+
+            Log.d("View","Starting launch of new Activity with  "+ thisCode.rawValue);
             startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);
+*/
 
 
+        } else if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            Log.d("View", "reached data display " + requestCode + " result:" + resultCode);
 
+            Destring destring = new Destring(data.getStringExtra("str"));
+            Team newTeam = new Team(destring.getTeamNumber(), destring.getPosition(), destring.getSandstorm("hab line"), destring.getSandstorm("cargo balls"), destring.getSandstorm("cargo hatches"), destring.getSandstorm("rocket balls"), destring.getSandstorm("rocket hatches"), destring.getTeleop("cargo balls"), destring.getTeleop("cargo hatches"), destring.getTeleop("rocket balls"), destring.getTeleop("rocket hatches"), destring.getRocketRole(), destring.getClimberRole(), destring.getOverallRole(), destring.getOtherComments());
 
-
+            Log.d("View", "inserted new team: " + newTeam.getTeamNumber());
+            teamViewModel.insert(newTeam);
+        } else {
+            Toast.makeText(
+                    getApplicationContext(),
+                    R.string.empty_not_saved,
+                    Toast.LENGTH_LONG).show();
         }
+
+
     }
 
 
@@ -140,7 +198,6 @@ TextView qrstring;
 
         return super.onOptionsItemSelected(item);
     }
-
 
 
 }

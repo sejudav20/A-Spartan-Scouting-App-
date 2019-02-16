@@ -9,6 +9,7 @@ import android.arch.persistence.room.PrimaryKey;
 public class Team {
     @PrimaryKey(autoGenerate = true)
     private int id;
+
     @ColumnInfo(name = "team")
     private int teamNumber;
 

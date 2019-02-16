@@ -1,5 +1,7 @@
 package com.example.davin.scoutingapp2019;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -20,18 +22,35 @@ public class Destring {
     public Destring(String str) {
         this.str = str;
         Scanner sc=new Scanner(str);
-        sc.useDelimiter(" \\s* | \\s* ");
+        sc.useDelimiter(",");
 
         teamNumber=sc.nextInt();
+
+
+
         position=sc.next();
-        Scanner oc=new Scanner(sc.next());
-        sandstorm.set(0,oc.nextBoolean());
-        sandstorm.set(1,oc.nextBoolean());
-        sandstorm.set(2,oc.nextBoolean());
-        Scanner ec=new Scanner(sc.next());
-        teleop.set(0,ec.nextInt());
-        teleop.set(1,ec.nextInt());
-        teleop.set(2,ec.nextInt());
+
+        String m=sc.next();
+        Scanner oc=new Scanner(m);
+        Log.d("View","got"+m);
+
+
+
+        sandstorm.add(0,oc.nextBoolean());
+
+        sandstorm.add(1,oc.nextBoolean());
+        sandstorm.add(2,oc.nextBoolean());
+        sandstorm.add(3,oc.nextBoolean());
+        sandstorm.add(4,oc.nextBoolean());
+
+
+
+
+
+        teleop.add(0,sc.nextInt());
+        teleop.add(1,sc.nextInt());
+        teleop.add(2,sc.nextInt());
+        teleop.add(3,sc.nextInt());
         rocketRole=sc.next();
         climberRole=sc.next();
         overallRole=sc.next();
@@ -58,11 +77,11 @@ public class Destring {
                 break;
             case "cargo balls":o= sandstorm.get(1);
                 break;
-            case "cargo hatches":o= sandstorm.get(1);
+            case "cargo hatches":o= sandstorm.get(2);
                 break;
-            case "rocket balls":o=sandstorm.get(2);
+            case "rocket balls":o=sandstorm.get(3);
                 break;
-            case "rocket hatches":o=sandstorm.get(3);
+            case "rocket hatches":o=sandstorm.get(4);
                 break;
         }
 
