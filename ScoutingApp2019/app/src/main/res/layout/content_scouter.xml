@@ -191,7 +191,8 @@
                 android:id="@+id/RocketRole"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/RocketRoles" />
+                android:entries="@array/RocketRoles"
+                android:popupTheme="@android:style/ThemeOverlay.Material.Light"/>
 
             <TextView
                 android:id="@+id/textView14"
@@ -205,7 +206,8 @@
                 android:id="@+id/ClimbingRoles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:entries="@array/ClimbingRoles" />
+                android:entries="@array/ClimbingRoles"
+                android:popupTheme="@android:style/ThemeOverlay.Material.Light"/>
 
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/Role"
@@ -244,6 +246,12 @@
                 android:layout_height="wrap_content"
                 android:visibility="invisible"
                 tools:srcCompat="@tools:sample/avatars[11]" />
+
+            <Button
+                android:id="@+id/backButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Button" />
 
 
         </LinearLayout>

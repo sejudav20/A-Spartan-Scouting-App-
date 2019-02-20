@@ -191,7 +191,8 @@ rocketHatchPanelCount.setMaxValue(20);
         });
 
 
-
+final Button b=findViewById(R.id.backButton);
+b.setVisibility(View.INVISIBLE);
         buttonQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -200,9 +201,10 @@ rocketHatchPanelCount.setMaxValue(20);
                 Bitmap bitmap;
                 try {
 
-                    bitmap=encodeAsBitmap(o,BarcodeFormat.QR_CODE, 600, 300);
+                    bitmap=encodeAsBitmap(o,BarcodeFormat.QR_CODE, 1000, 1000);
                     image.setImageBitmap(bitmap);
                     image.setVisibility(View.VISIBLE);
+                    b.setVisibility(View.VISIBLE);
                 } catch (WriterException e) {
                     e.printStackTrace();
                 }
@@ -210,6 +212,9 @@ rocketHatchPanelCount.setMaxValue(20);
 
             }
         });
+
+
+
 
 
 

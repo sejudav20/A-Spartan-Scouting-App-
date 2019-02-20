@@ -51,9 +51,11 @@ public class DataDisplay extends AppCompatActivity {
 
         if(intent.getIntExtra("type",0)==7){
             Log.d("View","Got in should change ");
-            Intent newIntent=new Intent(this,Home.class);
-            newIntent.putExtra("pass",9);
-               startActivity(newIntent);
+            Destring destring = new Destring(intent.getStringExtra("Ree"));
+          Team  newTeam = new Team(destring.getTeamNumber(), destring.getPosition(), destring.getSandstorm("hab line"), destring.getSandstorm("cargo balls"), destring.getSandstorm("cargo hatches"), destring.getSandstorm("rocket balls"), destring.getSandstorm("rocket hatches"), destring.getTeleop("cargo balls"), destring.getTeleop("cargo hatches"), destring.getTeleop("rocket balls"), destring.getTeleop("rocket hatches"), destring.getRocketRole(), destring.getClimberRole(), destring.getOverallRole(), destring.getOtherComments());
+
+
+            teamViewModel.insert(newTeam);
         }
 
     }
