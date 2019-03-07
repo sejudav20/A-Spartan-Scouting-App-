@@ -52,7 +52,7 @@ public class DataDisplay extends AppCompatActivity {
         if(intent.getIntExtra("type",0)==7){
             Log.d("View","Got in should change ");
             Destring destring = new Destring(intent.getStringExtra("Ree"));
-          Team  newTeam = new Team(destring.getTeamNumber(), destring.getPosition(), destring.getSandstorm("hab line"), destring.getSandstorm("cargo balls"), destring.getSandstorm("cargo hatches"), destring.getSandstorm("rocket balls"), destring.getSandstorm("rocket hatches"), destring.getTeleop("cargo balls"), destring.getTeleop("cargo hatches"), destring.getTeleop("rocket balls"), destring.getTeleop("rocket hatches"), destring.getRocketRole(), destring.getClimberRole(), destring.getOverallRole(), destring.getOtherComments());
+          Team  newTeam = new Team(destring.getTeamNumber(), destring.getPosition(), destring.isCrossedHabline(), destring.getSandstorm("cargo balls"), destring.getSandstorm("cargo hatches"), destring.getSandstorm("rocket balls"), destring.getSandstorm("rocket hatches"), destring.getTeleop("cargo balls"), destring.getTeleop("cargo hatches"), destring.getTeleop("rocket balls"), destring.getTeleop("rocket hatches"), destring.getRocketRole(), destring.getClimberRole(), destring.getOverallRole(), destring.getOtherComments());
 
 
             teamViewModel.insert(newTeam);
@@ -68,7 +68,7 @@ public class DataDisplay extends AppCompatActivity {
         Log.d("View","reached data display "+requestCode+" result:"+resultCode);
         if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
             Destring destring=new Destring(data.getStringExtra("str"));
-            Team newTeam= new Team(destring.getTeamNumber(),destring.getPosition(),destring.getSandstorm("hab line"),destring.getSandstorm("cargo balls"),destring.getSandstorm("cargo hatches"),destring.getSandstorm("rocket balls"),destring.getSandstorm("rocket hatches"),destring.getTeleop("cargo balls"),destring.getTeleop("cargo hatches"),destring.getTeleop("rocket balls"),destring.getTeleop("rocket hatches"),destring.getRocketRole(),destring.getClimberRole(),destring.getOverallRole(),destring.getOtherComments());
+            Team newTeam= new Team(destring.getTeamNumber(),destring.getPosition(),destring.isCrossedHabline(),destring.getSandstorm("cargo balls"),destring.getSandstorm("cargo hatches"),destring.getSandstorm("rocket balls"),destring.getSandstorm("rocket hatches"),destring.getTeleop("cargo balls"),destring.getTeleop("cargo hatches"),destring.getTeleop("rocket balls"),destring.getTeleop("rocket hatches"),destring.getRocketRole(),destring.getClimberRole(),destring.getOverallRole(),destring.getOtherComments());
 
             Log.d("View","inserted new team: "+newTeam.getTeamNumber());
             teamViewModel.insert(newTeam);

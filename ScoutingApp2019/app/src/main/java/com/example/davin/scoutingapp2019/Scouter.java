@@ -2,6 +2,7 @@ package com.example.davin.scoutingapp2019;
 
 import java.util.EnumMap;
 import java.util.Map;
+
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -20,12 +21,12 @@ import android.widget.NumberPicker;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
-
 
 
 public class Scouter extends AppCompatActivity {
@@ -34,19 +35,19 @@ public class Scouter extends AppCompatActivity {
     // All the UI views needed
     static EditText teamNumberView;
     static Spinner robotStartPosition;
-    static CheckBox sandstormRocketHatch;
+    static NumberPicker sandstormRocketHatch;
     static CheckBox sandstormCrossedHabLine;
-    static CheckBox sandstormCargoShipHatches;
-    static CheckBox sandstormRocketShipBalls;
-    static CheckBox sandstormCargoShipBalls;
+    static NumberPicker sandstormCargoShipHatches;
+    static NumberPicker sandstormRocketShipBalls;
+    static NumberPicker sandstormCargoShipBalls;
 
     static NumberPicker cargoShipBallCount;
-   static NumberPicker cargoShipHatchPanelCount;
+    static NumberPicker cargoShipHatchPanelCount;
     static TextView rocketNumbers;
     static TextView cargoNumbers;
 
 
-   static NumberPicker rocketBallCount;
+    static NumberPicker rocketBallCount;
     static NumberPicker rocketHatchPanelCount;
 
     static Spinner rocketRole;
@@ -56,7 +57,7 @@ public class Scouter extends AppCompatActivity {
     static TextInputLayout otherComments;
     static Button buttonQR;
     static ImageView image;
-static String position;
+    static String position;
     static String robotRocketRole;
     static String climberRole;
 
@@ -67,35 +68,43 @@ static String position;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scouter);
 
-        teamNumberView=findViewById(R.id.editText);
-      robotStartPosition= findViewById(R.id.spinner);
-        sandstormRocketHatch=findViewById(R.id.checkBox6);
-         sandstormCrossedHabLine=findViewById(R.id.checkBox2);
-        sandstormCargoShipHatches=findViewById(R.id.checkBox3);
-         sandstormRocketShipBalls =findViewById(R.id.checkBox5);
+        teamNumberView = findViewById(R.id.editText);
+        robotStartPosition = findViewById(R.id.spinner);
+        sandstormRocketHatch = findViewById(R.id.checkBox5);
+        sandstormCrossedHabLine = findViewById(R.id.checkBox2);
+        sandstormCargoShipHatches = findViewById(R.id.checkBox4);
+        sandstormRocketShipBalls = findViewById(R.id.checkBox3);
 
 
-      cargoShipBallCount=findViewById(R.id.CargoShipBallCount);
-     cargoShipHatchPanelCount=findViewById(R.id.cargoShipHatchPanelCount);
+        cargoShipBallCount = findViewById(R.id.CargoShipBallCount);
+        cargoShipHatchPanelCount = findViewById(R.id.cargoShipHatchPanelCount);
 
-        sandstormCargoShipBalls=findViewById(R.id.checkBox4);
+        sandstormCargoShipBalls = findViewById(R.id.checkBox6);
 
-        rocketBallCount=findViewById(R.id.rocketShipBallCount);
-         rocketHatchPanelCount=findViewById(R.id.rocketShipHatchPanelCount3);
+        rocketBallCount = findViewById(R.id.rocketShipBallCount);
+        rocketHatchPanelCount = findViewById(R.id.rocketShipHatchPanelCount3);
 
-        rocketRole= findViewById(R.id.RocketRole);
+        rocketRole = findViewById(R.id.RocketRole);
 
-        climbingRole= findViewById(R.id.ClimbingRoles);
-        overallRole=findViewById(R.id.Role);
-        otherComments=findViewById(R.id.Other);
-        buttonQR=findViewById(R.id.CreateQR);
-        image=findViewById(R.id.imageView2);
+        climbingRole = findViewById(R.id.ClimbingRoles);
+        overallRole = findViewById(R.id.Role);
+        otherComments = findViewById(R.id.Other);
+        buttonQR = findViewById(R.id.CreateQR);
+        image = findViewById(R.id.imageView2);
 
 
         String[] nums = new String[21];
-        for(int i=0; i<nums.length; i++){
+        for (int i = 0; i < nums.length; i++) {
             nums[i] = Integer.toString(i);
         }
+        sandstormCargoShipBalls.setDisplayedValues(nums);
+        sandstormCargoShipBalls.setMaxValue(20);
+        sandstormRocketShipBalls.setMaxValue(20);
+        sandstormCargoShipHatches.setMaxValue(20);
+        sandstormRocketHatch.setMaxValue(20);
+        sandstormCargoShipHatches.setDisplayedValues(nums);
+        sandstormRocketHatch.setDisplayedValues(nums);
+        sandstormRocketShipBalls.setDisplayedValues(nums);
         cargoShipHatchPanelCount.setDisplayedValues(nums);
         cargoShipBallCount.setDisplayedValues(nums);
         rocketHatchPanelCount.setDisplayedValues(nums);
@@ -103,39 +112,11 @@ static String position;
         cargoShipHatchPanelCount.setMaxValue(20);
         cargoShipBallCount.setMaxValue(20);
         rocketBallCount.setMaxValue(20);
-rocketHatchPanelCount.setMaxValue(20);
+        rocketHatchPanelCount.setMaxValue(20);
         cargoShipHatchPanelCount.setMinValue(0);
         cargoShipBallCount.setMinValue(0);
         rocketBallCount.setMinValue(0);
         rocketHatchPanelCount.setMinValue(0);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -153,7 +134,7 @@ rocketHatchPanelCount.setMaxValue(20);
         robotStartPosition.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Scouter.position= parent.getItemAtPosition(position).toString();
+                Scouter.position = parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -166,7 +147,7 @@ rocketHatchPanelCount.setMaxValue(20);
         climbingRole.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Scouter.climberRole= parent.getItemAtPosition(position).toString();
+                Scouter.climberRole = parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -179,7 +160,7 @@ rocketHatchPanelCount.setMaxValue(20);
         rocketRole.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Scouter.robotRocketRole= parent.getItemAtPosition(position).toString();
+                Scouter.robotRocketRole = parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -191,17 +172,17 @@ rocketHatchPanelCount.setMaxValue(20);
         });
 
 
-final Button b=findViewById(R.id.backButton);
-b.setVisibility(View.INVISIBLE);
+        final Button b = findViewById(R.id.backButton);
+        b.setVisibility(View.INVISIBLE);
         buttonQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String o=createString();
+                String o = createString();
 
                 Bitmap bitmap;
                 try {
 
-                    bitmap=encodeAsBitmap(o,BarcodeFormat.QR_CODE, 1000, 1000);
+                    bitmap = encodeAsBitmap(o, BarcodeFormat.QR_CODE, 1000, 1000);
                     image.setImageBitmap(bitmap);
                     image.setVisibility(View.VISIBLE);
                     b.setVisibility(View.VISIBLE);
@@ -214,21 +195,16 @@ b.setVisibility(View.INVISIBLE);
         });
 
 
-
-
-
-
-
     }
 
 
-public static String createString(){
-String sandstorm=sandstormCrossedHabLine.isChecked()+" "+sandstormCargoShipBalls.isChecked()+" "+sandstormCargoShipHatches.isChecked()+" "+sandstormRocketShipBalls.isChecked()+" "+sandstormRocketHatch.isChecked();
-String teleop= cargoShipBallCount.getValue()+","+cargoShipHatchPanelCount.getValue()+","+rocketBallCount.getValue()+","+rocketHatchPanelCount.getValue();
+    public static String createString() {
+        String sandstorm = sandstormCrossedHabLine.isChecked() + " " + sandstormCargoShipBalls.getValue() + " " + sandstormCargoShipHatches.getValue() + " " + sandstormRocketShipBalls.getValue() + " " + sandstormRocketHatch.getValue();
+        String teleop = cargoShipBallCount.getValue() + "," + cargoShipHatchPanelCount.getValue() + "," + rocketBallCount.getValue() + "," + rocketHatchPanelCount.getValue();
 
-return teamNumberView.getText()+","+ position+","+sandstorm+","+teleop+","+robotRocketRole+","+climberRole+","+overallRole.getEditText().getText()+", "+otherComments.getEditText().getText();
+        return teamNumberView.getText() + "," + position + "," + sandstorm + "," + teleop + "," + robotRocketRole + "," + climberRole + "," + overallRole.getEditText().getText() + ", " + otherComments.getEditText().getText();
 
-}
+    }
 
     private static final int WHITE = 0xFFFFFFFF;
     private static final int BLACK = 0xFF000000;
@@ -277,11 +253,6 @@ return teamNumberView.getText()+","+ position+","+sandstorm+","+teleop+","+robot
         }
         return null;
     }
-
-
-
-
-
 
 
 }

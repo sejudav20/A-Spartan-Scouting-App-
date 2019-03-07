@@ -10,7 +10,7 @@ public class Destring {
     private String str;
     private int teamNumber;
     private String position;
-    private ArrayList<Boolean> sandstorm= new ArrayList<Boolean>();
+    private ArrayList<Integer> sandstorm= new ArrayList<>();
 
     private ArrayList<Integer> teleop=new ArrayList<Integer>();
 
@@ -18,6 +18,7 @@ public class Destring {
     private String climberRole;
     private String overallRole;
     private String otherComments;
+    private boolean crossedHabline;
 
     public Destring(String str) {
         this.str = str;
@@ -36,12 +37,12 @@ public class Destring {
 
 
 
-        sandstorm.add(0,oc.nextBoolean());
-
-        sandstorm.add(1,oc.nextBoolean());
-        sandstorm.add(2,oc.nextBoolean());
-        sandstorm.add(3,oc.nextBoolean());
-        sandstorm.add(4,oc.nextBoolean());
+        //sandstorm.add(0,oc.nextInt());
+        crossedHabline=oc.nextBoolean();
+        sandstorm.add(1,oc.nextInt());
+        sandstorm.add(2,oc.nextInt());
+        sandstorm.add(3,oc.nextInt());
+        sandstorm.add(4,oc.nextInt());
 
 
 
@@ -69,8 +70,12 @@ public class Destring {
         this.teamNumber = teamNumber;
     }
 
-    public boolean getSandstorm(String s){
-        boolean o=false;
+    public boolean isCrossedHabline() {
+        return crossedHabline;
+    }
+
+    public int getSandstorm(String s){
+        int o=0;
         switch(s){
 
             case "hab line":o= sandstorm.get(0);

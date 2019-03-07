@@ -13,7 +13,7 @@ public class Team {
     @ColumnInfo(name = "team")
     private int teamNumber;
 
-    public Team(int teamNumber, String position, boolean habLine, boolean sandstormCargoBalls, boolean sandstormCargoHatches, boolean sandstormRocketBalls, boolean sandstormRocketHatches, int CargoBallTotal, int CargoHatchesTotal, int RocketBallsTotal, int RocketHatchesTotal, String rocketRole, String climberRole, String overallRole, String otherComments) {
+    public Team(int teamNumber, String position, boolean habLine, int sandstormCargoBalls, int sandstormCargoHatches, int sandstormRocketBalls, int sandstormRocketHatches, int CargoBallTotal, int CargoHatchesTotal, int RocketBallsTotal, int RocketHatchesTotal, String rocketRole, String climberRole, String overallRole, String otherComments) {
         this.teamNumber = teamNumber;
         this.position = position;
         this.habLine = habLine;
@@ -47,19 +47,19 @@ public class Team {
         this.habLine = habLine;
     }
 
-    public void setSandstormCargoBalls(boolean sandstormCargoBalls) {
+    public void setSandstormCargoBalls(int sandstormCargoBalls) {
         this.sandstormCargoBalls = sandstormCargoBalls;
     }
 
-    public void setSandstormCargoHatches(boolean sandstormCargoHatches) {
+    public void setSandstormCargoHatches(int sandstormCargoHatches) {
         this.sandstormCargoHatches = sandstormCargoHatches;
     }
 
-    public void setSandstormRocketBalls(boolean sandstormRocketBalls) {
+    public void setSandstormRocketBalls(int sandstormRocketBalls) {
         this.sandstormRocketBalls = sandstormRocketBalls;
     }
 
-    public void setSandstormRocketHatches(boolean sandstormRocketHatches) {
+    public void setSandstormRocketHatches(int sandstormRocketHatches) {
         this.sandstormRocketHatches = sandstormRocketHatches;
     }
 
@@ -100,13 +100,13 @@ public class Team {
     @ColumnInfo(name="Crossed Hab Line")
     private boolean habLine;
     @ColumnInfo(name="Put Balls in Cargo Ship during Sandstorm")
-    private boolean sandstormCargoBalls;
+    private int sandstormCargoBalls;
     @ColumnInfo(name="Put hatches in Cargo Ship during Sandstorm")
-    private boolean sandstormCargoHatches;
+    private int sandstormCargoHatches;
     @ColumnInfo(name="Put Balls in Rocket Ship during Sandstorm")
-    private boolean sandstormRocketBalls;
+    private int sandstormRocketBalls;
     @ColumnInfo(name="Put Hatches in Rocket Ship during Sandstorm")
-    private boolean sandstormRocketHatches;
+    private int sandstormRocketHatches;
 
 
     @ColumnInfo(name="Total balls in Cargo Ship")
@@ -144,19 +144,19 @@ public class Team {
         return habLine;
     }
 
-    public boolean isSandstormCargoBalls() {
+    public int getSandstormCargoBalls() {
         return sandstormCargoBalls;
     }
 
-    public boolean isSandstormCargoHatches() {
+    public int getSandstormCargoHatches() {
         return sandstormCargoHatches;
     }
 
-    public boolean isSandstormRocketBalls() {
+    public int getSandstormRocketBalls() {
         return sandstormRocketBalls;
     }
 
-    public boolean isSandstormRocketHatches() {
+    public int getSandstormRocketHatches() {
         return sandstormRocketHatches;
     }
 
